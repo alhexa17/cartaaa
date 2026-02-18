@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Valentina ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+    background: radial-gradient(circle at bottom, #0d1b2a, #000814);
+    overflow:hidden;
+    color:white;
+}
+
+/* Pantalla de contraseña */
+#lockScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#000814;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+}
+
+input{
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    margin-top:10px;
+    text-align:center;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d6d;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.container{
+    display:none;
+    position:relative;
+    z-index:2;
+    width:90%;
+    max-width:800px;
+    margin:50px auto;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(255,255,255,0.1);
+}
+
+h1{
+    font-family:'Great Vibes', cursive;
+    font-size:55px;
+    text-align:center;
+}
+
+#text{
+    white-space:pre-line;
+    font-size:18px;
+    line-height:1.7;
+}
+
+/* Estrellas */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* Corazones */
+.heart{
+    position:absolute;
+    font-size:15px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh); opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="lockScreen">
+    <h2>🔐 Solo para ti</h2>
+    <p>Ingresa nuestra contraseña 💖</p>
+    <input type="password" id="password" placeholder="Escribe aquí">
+    <button onclick="unlock()">Entrar</button>
+</div>
+
+<div class="container" id="mainContent">
+    <h1>Para Valentina 💕</h1>
+    <div id="text"></div>
+</div>
+
+<script>
+// 🔐 Cambia la contraseña aquí
+const correctPassword = "05092025";
+
+// 💌 Pega tu carta completa aquí
+const message = `Desde que llegaste a mi vida tomé otro camino, nunca me había pasado algo así, eres lo que siempre soñé, alguna vez, un amigo me pregunto, ¿cómo sería la chica ideal para ti? A lo que yo conteste; no lo sé, creo que con que me ame tal y como soy seria la ideal, QUE EQUIVOCADO ESTABA, debí contestar; la chica ideal para mi es una que este alta, que tenga su cabello café clarito, unas cejas hermosas y una personalidad que me vuelva loquito, también que tenga un talento increíble para las artes y una carita tan hermosa, que con una mirada me derrita.
+Cuando empecé a tirarte indirectas y a observar lo hermosa que eras decidí que tenía que intentar algo contigo, en ese momento no tenía idea de lo que tu ibas a significar en mi vida, ¿qué curioso no? Yo sabia que tu mirada tenia algo muy especial para mí, pero no sabía que ese algo era el amor mas puro y precioso que existe en este universo 
+ yo no se que misiones tenga en esta vida, pero estoy seguro de que una de ellas es convertirte en la persona mas feliz, amada y plena 
+Valentina, mi amor, nos falta mucho camino por recorrer, pero quiero que sepas que cada día me enamoras más, cada día te amo mas espero cumplir mi sueño de lograr formar una familia a tu lado, sé que va a ser difícil, pero estoy seguro de que tú y yo estamos destinados a lograrlo,
+Se que a veces las cosas pueden ser difíciles, algunos errores, algunos enojos, algunas indiferencias, pero eso nunca va a cambiar lo mucho que te amo y las ganas que tengo de envejecer contigo 
+Eres una niña hermosa por dentro y por fuera, la verdad en mi vida había conocido a alguien tan especial como tú, podría decir que ojalá existan más personas en el mundo como tú, pero decir eso es una total tontería, nunca nadie va a ser como tu mi amor 
+Espero te la hayas pasado super bien en tu cumple, gracias por darme la oportunidad de festejarlo contigo, espero esto sea por siempre 
+TE AMO MAS QUE AYER Y MENOS QUE MAÑANA 
+`;
+
+function unlock(){
+    const input = document.getElementById("password").value;
+    if(input === correctPassword){
+        document.getElementById("lockScreen").style.display="none";
+        document.getElementById("mainContent").style.display="block";
+        typeWriter();
+    } else {
+        alert("Contraseña incorrecta 💔");
+    }
+}
+
+// ⌨️ Efecto máquina de escribir
+let i = 0;
+function typeWriter(){
+    if(i < message.length){
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 35);
+    }
+}
+
+// ✨ Estrellas
+for(let i=0;i<150;i++){
+    let star=document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    document.body.appendChild(star);
+}
+
+// 💕 Corazones
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},800);
+</script>
+
+</body>
+</html>
